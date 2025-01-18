@@ -1,7 +1,7 @@
 
 // Creating the Map
 var map = L.map('map', { crs: L.CRS.Simple }).setView([-130, 123], 1);
-L.tileLayer('../map/{z}/{x}/{y}.png', {
+L.tileLayer('/map/{z}/{x}/{y}.png', {
   continuousWorld: false,
   noWrap: true,
   minZoom: 3,

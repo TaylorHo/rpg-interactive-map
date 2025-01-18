@@ -1,9 +1,9 @@
 
 function createIcon(iconName) {
   return L.icon({
-    iconUrl: `../icons/${iconName}.png`,
-    iconRetinaUrl: `../icons/${iconName}.png`,
-    shadowUrl: '../icons/shadow.png',
+    iconUrl: `/icons/${iconName}.png`,
+    iconRetinaUrl: `/icons/${iconName}.png`,
+    shadowUrl: '/icons/shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
