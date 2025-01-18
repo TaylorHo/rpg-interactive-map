@@ -6,6 +6,7 @@ L.tileLayer('../map/{z}/{x}/{y}.png', {
   noWrap: true,
   minZoom: 3,
   maxZoom: 6,
+  attribution: 'By <a href="https://github.com/TaylorHo" target="_blank">@TaylorHo</a>'
 }).addTo(map);
 
 // Boundaries Variables

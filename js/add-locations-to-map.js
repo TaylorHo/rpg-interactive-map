@@ -25,6 +25,7 @@ fetch('../locations.csv').then(response => response.text()).then(data => {
   let newOverlay = {};
 
   for (const key in overlays) {
+    // Layers start hidden by default. You can add a ".addTo(map)" at the final of the below line to show them on the map load.
     newOverlay[key] = L.layerGroup(overlays[key]);
   }
 
