@@ -25,6 +25,15 @@ To use a custom fantasy map:
 ### 2. Add Markers
 
 Markers are loaded dynamically from a CSV file. Take a look at the [`locations.csv`](./locations.csv) file
+This CSV file have the following columns:
+- **category**: Any text, the togable layers will be groups of categories with the same name.
+- **lat**: Latitude of the marker.
+- **long**: Longitude of the marker.
+- **icon**: The name of the marker, same name as it have in `js/icons.js` file.
+- **text**: Name of the marker.
+- **description**: Content of the sidebar that is shown after clicking the marker. It can have HTML tags and as many commas as you want. If you want to open it into a CSV/Excel editor, make sure to add Double Quotes around the entire text (quotes inside this description don't need to be escaped).
+
+NOTE: for helping to find the latitude and longitude, we have a helper marker commented in `js/map.js`. Uncomment it to easily get coordinates from the map by dragging a simple marker.
 
 ## Usage
 

@@ -1,5 +1,5 @@
 // Locations and overlays
-fetch('/locations.csv').then(response => response.text()).then(data => {
+fetch('../locations.csv').then(response => response.text()).then(data => {
   const rows = data.split('\n').slice(1);
   let overlays = {}
 
