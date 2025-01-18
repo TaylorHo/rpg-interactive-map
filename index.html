@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>RPG Map</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Leaflet Import -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+		integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+		integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+	<link rel="stylesheet" href="/js/plugins/leaflet-sidebar/L.Control.Sidebar.css">
+	<script src="/js/plugins/leaflet-sidebar/L.Control.Sidebar.js"></script>
+	<!-- Style reset -->
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		html,
+		body {
+			width: 100vw;
+			height: 100vh;
+		}
+
+		#map {
+			width: 100%;
+			height: 100%;
+			background-color: #73acc3;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="map"></div>
+
+	<div id="sidebar"></div>
+
+	<script src="js/icons.js"></script>
+	<script src="js/map.js"></script>
+	<script src="js/sidebar.js"></script>
+	<script src="js/add-locations-to-map.js"></script>
+</body>
+
+</html>
