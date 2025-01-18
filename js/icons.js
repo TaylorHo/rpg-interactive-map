@@ -1,9 +1,9 @@
 
 function createIcon(iconName) {
   return L.icon({
-    iconUrl: `/icons/${iconName}.png`,
-    iconRetinaUrl: `/icons/${iconName}.png`,
-    shadowUrl: '/icons/shadow.png',
+    iconUrl: `/rpg-interactive-map/icons/${iconName}.png`,
+    iconRetinaUrl: `/rpg-interactive-map/icons/${iconName}.png`,
+    shadowUrl: '/rpg-interactive-map/icons/shadow.png',
     iconSize: [25, 41],
     iconAnchor: [12, 41],
     popupAnchor: [1, -34],
