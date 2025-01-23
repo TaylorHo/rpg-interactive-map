@@ -1,15 +1,5 @@
-const kilometerToMilesConstant = 0.6213712;
-const sizeChangeFactor = 1; // Use to make distances longer (decresing this value) or shorter (increasing this value). Usefull for different map sizes.
-
-// Travel speeds from D&D
-const travelSpeed = {
-  slow: 2,
-  medium: 3,
-  fast: 4,
-};
-
 // Locations and overlays
-fetch('/locations.csv').then(response => response.text()).then(data => {
+fetch(locationsCSVFile).then(response => response.text()).then(data => {
   const rows = data.split('\n').slice(1);
   let overlays = {}
 
@@ -23,10 +13,11 @@ fetch('/locations.csv').then(response => response.text()).then(data => {
     marker.on('click', (e) => {
       const distanceToParty = (L.CRS.Simple.distance(partyMarker.getLatLng(), marker.getLatLng()) * sizeChangeFactor).toFixed(1); // It's in meters, but depending on the map this can look small, so in the below message we say it's in "Km"
       const distanceInMiles = (distanceToParty * kilometerToMilesConstant).toFixed(1);
-      sidebar.setContent(`
-        <h1>${category}</h1>
+
+      const travelVelocityHtmlContent = travelVelocityRulesLink ? `| <a href="${travelVelocityRulesLink}" target="_blank">Rules</a>` : '';
+      const distancesHtmlContent = showPartyMarker ? `
         <p>
-          <strong>Distance: ${distanceToParty} km</strong> (${distanceInMiles} miles)<br/>
+          <strong>Distance: ${distanceToParty} km</strong> (${distanceInMiles} miles) ${travelVelocityHtmlContent}<br/>
         </p>
         <p style="font-size: 0.9em;">
           Traveling Fast: ${milesToHours(distanceInMiles, travelSpeed.fast)}<br/>
@@ -34,6 +25,11 @@ fetch('/locations.csv').then(response => response.text()).then(data => {
           Traveling Slow: ${milesToHours(distanceInMiles, travelSpeed.slow)}
           </p>
         <br/>
+        ` : '<br/>';
+
+      sidebar.setContent(`
+        <h1>${text} (${category})</h1>
+        ${distancesHtmlContent}
         <strong>Description:</strong>
         <p>${description}</p>
       `);
@@ -86,8 +82,6 @@ function toggleOverlayOnLocalStorage(overlay) {
 function milesToHours(distance, speed) {
   const hours = Math.floor(distance / speed);
   const minutes = (parseFloat((distance / speed).toFixed(2)) - hours) * 60;
-
-  // return { hours, minutes };
 
   return `${hours}h ${minutes.toFixed(0)} min`;
 }

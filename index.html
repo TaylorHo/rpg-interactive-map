@@ -37,14 +37,22 @@
 </head>
 
 <body>
-	<div id="map"></div>
 
+	<div id="map"></div>
 	<div id="sidebar"></div>
 
+	<script src="/variables.js"></script>
 	<script src="/js/icons.js"></script>
 	<script src="/js/map.js"></script>
 	<script src="/js/sidebar.js"></script>
 	<script src="/js/add-locations-to-map.js"></script>
+
+	<script>
+		// Below is a function that is called when the page loads
+		(() => {
+			document.title = nameOfTheMapOrPage;
+		})()
+	</script>
 </body>
 
 </html>
