@@ -27,10 +27,12 @@ fetch('/rpg-interactive-map/locations.csv').then(response => response.text()).th
         <h1>${category}</h1>
         <p>
           <strong>Distance: ${distanceToParty} km</strong> (${distanceInMiles} miles)<br/>
-          Fast travel: ${milesToHours(distanceInMiles, travelSpeed.fast)} hours<br/>
-          Medium travel: ${milesToHours(distanceInMiles, travelSpeed.medium)} hours<br/>
-          Slow travel: ${milesToHours(distanceInMiles, travelSpeed.slow)} hours
         </p>
+        <p style="font-size: 0.9em;">
+          Traveling Fast: ${milesToHours(distanceInMiles, travelSpeed.fast)}<br/>
+          Traveling Medium: ${milesToHours(distanceInMiles, travelSpeed.medium)}<br/>
+          Traveling Slow: ${milesToHours(distanceInMiles, travelSpeed.slow)}
+          </p>
         <br/>
         <strong>Description:</strong>
         <p>${description}</p>
