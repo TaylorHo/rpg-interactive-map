@@ -5,7 +5,7 @@ fetch(locationsCSVFile).then(response => response.text()).then(data => {
 
   for (const row of rows) {
     const items = row.split(',');
-    const [category, lat, long, icon, text] = items;
+    const [category, overlayMarkerColor, lat, long, icon, text] = items;
     let description = row.split(',').slice(5).join(',');
     description = description.replace(/^"|"$/g, '');
 
@@ -21,14 +21,14 @@ fetch(locationsCSVFile).then(response => response.text()).then(data => {
         </p>
         <p style="font-size: 0.9em;">
           Traveling Fast: ${milesToHours(distanceInMiles, travelSpeed.fast)}<br/>
-          Traveling Medium: ${milesToHours(distanceInMiles, travelSpeed.medium)}<br/>
+          Traveling Normal: ${milesToHours(distanceInMiles, travelSpeed.normal)}<br/>
           Traveling Slow: ${milesToHours(distanceInMiles, travelSpeed.slow)}
           </p>
         <br/>
         ` : '<br/>';
 
       sidebar.setContent(`
-        <h1>${text} (${category})</h1>
+        <h1>${text}</h1>
         ${distancesHtmlContent}
         <strong>Description:</strong>
         <p>${description}</p>
@@ -36,10 +36,12 @@ fetch(locationsCSVFile).then(response => response.text()).then(data => {
       sidebar.show();
     });
 
-    if (!overlays[category]) {
-      overlays[category] = [marker];
+    const styledOverlayMarkerColor = `<span class="marker ${overlayMarkerColor}">${category}</span>`;
+
+    if (!overlays[styledOverlayMarkerColor]) {
+      overlays[styledOverlayMarkerColor] = [marker];
     } else {
-      overlays[category].push(marker);
+      overlays[styledOverlayMarkerColor].push(marker);
     }
   }
 

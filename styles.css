@@ -1,0 +1,40 @@
+.blue::before {
+  color: #3d3ddf;
+}
+
+.lightblue::before {
+  color: #95e5ff;
+}
+
+.darkblue::before {
+  color: #0000b8;
+}
+
+.yellow::before {
+  color: #e5e500;
+}
+
+.red::before {
+  color: red;
+}
+
+.green::before {
+  color: #00a400;
+}
+
+.purple::before {
+  color: #a300a3;
+}
+
+.marker::before {
+  content: "⬤";
+  line-height: 0;
+}
+
+.leaflet-control-layers-overlays label span {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: row;
+  gap: 5px;
+}

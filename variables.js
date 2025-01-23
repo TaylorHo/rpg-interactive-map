@@ -1,10 +1,10 @@
 const kilometerToMilesConstant = 0.6213712; // 1 km = 0.6213712 miles
-const sizeChangeFactor = 1; // Use to make distances longer (decresing this value) or shorter (increasing this value). Usefull for different map sizes.
+const sizeChangeFactor = 0.4; // Use to make distances longer (increasing this value) or shorter (decresing this value). Usefull for different map sizes.
 
 // Travel speeds from D&D (values in miles per hour)
 const travelSpeed = {
   slow: 2,
-  medium: 3,
+  normal: 3,
   fast: 4,
 };
 

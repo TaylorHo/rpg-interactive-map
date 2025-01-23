@@ -29,6 +29,7 @@ To use a custom fantasy map:
 Markers are loaded dynamically from a CSV file. Take a look at the [`locations.csv`](./locations.csv) file
 This CSV file have the following columns:
 - **category**: Any text, the togable layers will be groups of categories with the same name.
+- **overlayMarkerColor**: Color for the bullet shown before the layer name, in the layer groups. It's useful to use the same color as your markers. If you want a new color, you can add it in `styles.css` (we currently have yellow, green, purple, red, blue, darkblue and lightblue, to match the current custom markers colors).
 - **lat**: Latitude of the marker.
 - **long**: Longitude of the marker.
 - **icon**: The name of the marker, same name as it have in `js/icons.js` file.
