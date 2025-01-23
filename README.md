@@ -1,5 +1,7 @@
 # RPG Interactive Map
 
+[[Preview]](https://taylorho.github.io/rpg-interactive-map/)
+
 An interactive map for tabletop RPGs and fantasy worlds! This project leverages [Leaflet.js](https://leafletjs.com/) and the [leaflet-sidebar](https://github.com/Turbo87/leaflet-sidebar) plugin to create an engaging and dynamic map experience. 
 
 Users can load a fantasy map, add custom markers using a CSV file, and view detailed information about locations through a sidebar.
@@ -27,6 +29,7 @@ To use a custom fantasy map:
 Markers are loaded dynamically from a CSV file. Take a look at the [`locations.csv`](./locations.csv) file
 This CSV file have the following columns:
 - **category**: Any text, the togable layers will be groups of categories with the same name.
+- **overlayMarkerColor**: Color for the bullet shown before the layer name, in the layer groups. It's useful to use the same color as your markers. If you want a new color, you can add it in `styles.css` (we currently have yellow, green, purple, red, blue, darkblue and lightblue, to match the current custom markers colors).
 - **lat**: Latitude of the marker.
 - **long**: Longitude of the marker.
 - **icon**: The name of the marker, same name as it have in `js/icons.js` file.
@@ -43,11 +46,13 @@ NOTE: for helping to find the latitude and longitude, we have a helper marker co
    cd rpg-interactive-map
    ```
 
-2. Place your converted/splitted map into `map/` folder.
+2. Check the `variables.js` file, there's many available configurations.
 
-3. Add your marker data to the CSV file `locations.csv`
+3. Place your converted/splitted map into `map/` folder.
 
-4. Host your map into GitHub Pages, Vercel, S3 or Cloudflare Pages (or any other static pages hosting service).
+4. Add your marker data to the CSV file `locations.csv`
+
+5. Host your map into GitHub Pages, Vercel, S3 or Cloudflare Pages (or any other static pages hosting service).
     - For running locally, you can use a tool like `serve` (install with `npm i -g serve`), running in the root folder the command `serve .`.
 
 ## Acknowledgments

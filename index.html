@@ -33,17 +33,27 @@
 			background-color: #73acc3;
 		}
 	</style>
+
+	<link rel="stylesheet" href="/rpg-interactive-map/styles.css">
 </head>
 
 <body>
-	<div id="map"></div>
 
+	<div id="map"></div>
 	<div id="sidebar"></div>
 
+	<script src="/rpg-interactive-map/variables.js"></script>
 	<script src="/rpg-interactive-map/js/icons.js"></script>
 	<script src="/rpg-interactive-map/js/map.js"></script>
 	<script src="/rpg-interactive-map/js/sidebar.js"></script>
 	<script src="/rpg-interactive-map/js/add-locations-to-map.js"></script>
+
+	<script>
+		// Below is a function that is called when the page loads
+		(() => {
+			document.title = nameOfTheMapOrPage;
+		})()
+	</script>
 </body>
 
 </html>
