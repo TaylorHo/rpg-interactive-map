@@ -6,7 +6,7 @@ fetch(locationsCSVFile).then(response => response.text()).then(data => {
   for (const row of rows) {
     const items = row.split(',');
     const [category, overlayMarkerColor, lat, long, icon, text] = items;
-    let description = row.split(',').slice(5).join(',');
+    let description = row.split(',').slice(6).join(',');
     description = description.replace(/^"|"$/g, '');
 
     const marker = L.marker([lat, long], { icon: icons[icon] }).bindPopup(`<b>${text}</b>`);
