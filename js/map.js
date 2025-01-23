@@ -8,7 +8,8 @@ L.tileLayer('/map/{z}/{x}/{y}.png', {
   continuousWorld: false,
   noWrap: true,
   minZoom: 3,
-  maxZoom: 6,
+  maxZoom: 7, // Max zoom level, higher than maxNativeZoom, so when we go higher than maxNativeZoom, we just scale up the images on the map (providing a higher zoom)
+  maxNativeZoom: 6, // Maximum zoom level for /map/ folders
   attribution: 'By <a href="https://github.com/TaylorHo" target="_blank">@TaylorHo</a>'
 }).addTo(map);
 
