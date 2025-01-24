@@ -112,9 +112,13 @@ async function getTextsForOverlays() {
       <svg viewBox="0 0 ${svgWidth} ${svgHeight}" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <filter id="text-shadow">
-            <feDropShadow dx="2" dy="2" stdDeviation="10" flood-color="black" />
+            <feDropShadow dx="4" dy="4" stdDeviation="6" flood-color="black" />
           </filter>
         </defs>
+        <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
+              font-family="${fontFamily}" font-size="${fontSize}" fill="none" stroke="#212121" stroke-width="8">
+          ${title}
+        </text>
         <text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle"
               font-family="${fontFamily}" font-size="${fontSize}" fill="#fff" filter="url(#text-shadow)">
           ${title}
