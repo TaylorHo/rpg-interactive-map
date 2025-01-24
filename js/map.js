@@ -1,7 +1,7 @@
 let partyPosition = mapCenter;
 
 // Creating the Map
-var map = L.map('map', { crs: L.CRS.Simple }).setView(mapCenter, 1);
+var map = L.map('map', { crs: L.CRS.Simple }).setView(mapCenter, lowestZoom);
 L.tileLayer(`${mapFolder}/{z}/{x}/{y}.png`, {
   continuousWorld: false,
   noWrap: true,
