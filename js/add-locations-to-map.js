@@ -4,8 +4,11 @@ fetch(locationsCSVFile).then(response => response.text()).then(async data => {
   let overlays = getMarkersForOverlays(rows);
   let textTitles = await getTextsForOverlays();
 
-  let newOverlay = getLayersGroupForOverlays(overlays, textTitles); // TODO: add texts paths
-  L.control.layers(null, newOverlay).addTo(map);
+  let newOverlay = getLayersGroupForOverlays(overlays, textTitles);
+
+  if (Object.keys(newOverlay).length !== 0) {
+    L.control.layers(null, newOverlay).addTo(map);
+  }
 
   map.on('overlayadd', function (e) {
     toggleOverlayOnLocalStorage(e.name);
@@ -28,7 +31,12 @@ function getLayersGroupForOverlays(overlays, textTitles) {
     }
   }
 
-  newOverlay['Locations Titles'] = L.layerGroup(textTitles);
+  if (textTitles.length > 0) {
+    newOverlay['Locations Titles'] = L.layerGroup(textTitles);
+    if (activeOverlays.includes('Locations Titles')) {
+      newOverlay['Locations Titles'].addTo(map);
+    }
+  }
 
   return newOverlay;
 }
@@ -37,12 +45,19 @@ function getMarkersForOverlays(rows) {
   let overlays = {}
 
   for (const row of rows) {
+    if (!row || row === '') continue;
+
     const items = row.split(',');
     const [category, overlayMarkerColor, lat, long, icon, text] = items;
     let description = row.split(',').slice(6).join(',');
     description = description.replace(/^"|"$/g, '');
 
-    const marker = L.marker([lat, long], { icon: icons[icon] }).bindPopup(`<b>${text}</b>`);
+    let iconToUse = L.AwesomeMarkers.icon({
+      icon: icon || "circle",
+      markerColor: overlayMarkerColor || "blue", // Available colors shown in js/plugins/awesome-markers/images/markers-soft@2x.png
+    });
+
+    const marker = L.marker([lat, long], { icon: iconToUse }).bindPopup(`<b>${text}</b>`);
     marker.on('click', (e) => {
       const distanceToParty = (L.CRS.Simple.distance(partyMarker.getLatLng(), marker.getLatLng()) * sizeChangeFactor).toFixed(1); // It's in meters, but depending on the map this can look small, so in the below message we say it's in "Km"
       const distanceInMiles = (distanceToParty * kilometerToMilesConstant).toFixed(1);
@@ -89,6 +104,8 @@ async function getTextsForOverlays() {
   });
 
   for (const row of rows) {
+    if (!row || row === '') continue;
+
     const items = row.split(',');
     const [title, lat, long, size] = items;
 
