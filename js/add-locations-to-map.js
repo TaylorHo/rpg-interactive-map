@@ -1,8 +1,11 @@
-// Locations and overlays
-fetch(locationsCSVFile).then(response => response.text()).then(async data => {
-  const rows = data.split('\n').slice(1);
-  let overlays = getMarkersForOverlays(rows);
-  let textTitles = await getTextsForOverlays();
+(async () => {
+  const [locationTitles, locationMarkers] = await Promise.all([
+    getLocationTitles(),
+    getLocationMarkers(),
+  ])
+
+  let overlays = getMarkersForOverlays(locationMarkers);
+  let textTitles = await getTextsForOverlays(locationTitles);
 
   let newOverlay = getLayersGroupForOverlays(overlays, textTitles);
 
@@ -17,7 +20,20 @@ fetch(locationsCSVFile).then(response => response.text()).then(async data => {
   map.on('overlayremove', function (e) {
     toggleOverlayOnLocalStorage(e.name);
   });
-});
+})();
+
+async function getLocationTitles() {
+  return await fetch(locationsTitlesCSVFile).then(response => response.text()).then(async data => {
+    const rows = data.split('\n').slice(1).filter(row => row && row !== '');
+    return rows;
+  });
+}
+async function getLocationMarkers() {
+  return await fetch(locationsCSVFile).then(response => response.text()).then(async data => {
+    const rows = data.split('\n').slice(1).filter(row => row && row !== '');
+    return rows;
+  });
+}
 
 function getLayersGroupForOverlays(overlays, textTitles) {
   let newOverlay = {};
@@ -45,8 +61,6 @@ function getMarkersForOverlays(rows) {
   let overlays = {}
 
   for (const row of rows) {
-    if (!row || row === '') continue;
-
     const items = row.split(',');
     const [category, overlayMarkerColor, lat, long, icon, text] = items;
     let description = row.split(',').slice(6).join(',');
@@ -96,16 +110,10 @@ function getMarkersForOverlays(rows) {
   return overlays;
 }
 
-async function getTextsForOverlays() {
+async function getTextsForOverlays(rows) {
   const locationNames = [];
 
-  const rows = await fetch(locationsTitlesCSVFile).then(response => response.text()).then(data => {
-    return data.split('\n').slice(1);
-  });
-
   for (const row of rows) {
-    if (!row || row === '') continue;
-
     const items = row.split(',');
     const [title, lat, long, size] = items;
 
